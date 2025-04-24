@@ -22,18 +22,17 @@ async def main():
         sys.exit(1)
 
 if __name__ == '__main__':
+    # Set up the event loop
+    loop = asyncio.get_event_loop()
+    
     try:
-        # Use uvloop if available for better performance
-        try:
-            import uvloop
-            uvloop.install()
-        except ImportError:
-            pass
-            
         # Run the bot
-        asyncio.run(main())
+        loop.run_until_complete(main())
     except KeyboardInterrupt:
         logger.info("Bot stopped by user")
     except Exception as e:
         logger.error(f"Fatal error: {str(e)}")
-        sys.exit(1) 
+        sys.exit(1)
+    finally:
+        # Clean up
+        loop.close() 

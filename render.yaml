@@ -14,4 +14,8 @@ services:
       - key: PYTHONUNBUFFERED
         value: "1"
       - key: PYTHONPATH
-        value: "." 
+        value: "."
+      - key: PYTHONASYNCIODEBUG
+        value: "1"
+      - key: EVENT_LOOP
+        value: "asyncio" 
