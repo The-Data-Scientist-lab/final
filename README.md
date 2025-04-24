@@ -1,39 +1,28 @@
-# Telegram Model Assistant Bot
+# Web Application
 
-A beautiful and interactive Telegram bot for model content delivery.
-
-## Features
-
-- 🌟 Beautiful welcome message with user's name
-- 👩‍💼 Three model options with detailed information
-- 💰 Two pricing plans (30 minutes and 1 hour)
-- 📸 Payment verification system
-- 🎨 Attractive UI with emojis and formatting
+A web application that stays alive using Flask and keep_alive.py.
 
 ## Setup
 
-1. Install Python 3.13
-2. Install required packages:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Create a `.env` file in the project root and add your Telegram bot token:
-   ```
-   TELEGRAM_BOT_TOKEN=your_bot_token_here
-   ```
-4. Run the bot:
-   ```bash
-   python bot.py
-   ```
+1. Install the required dependencies:
+```bash
+pip install -r requirements.txt
+```
 
-## Usage
+2. Create a `.env` file in the project root directory for any environment variables you need.
 
-1. Start the bot by sending `/start` command
-2. Choose from three available models
-3. Select your preferred duration (30 minutes or 1 hour)
-4. Complete the payment
-5. Send the payment screenshot for verification
+3. Run the application:
+```bash
+python main.py
+```
 
-## Note
+## Features
 
-Make sure to replace the model images in the `images` directory with your actual model photos. 
+- Stays alive using Flask web server
+- Basic web application functionality
+
+## Requirements
+
+- Python 3.8+
+- Flask
+- python-dotenv 

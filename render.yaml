@@ -1,5 +1,5 @@
 services:
-  - type: worker
+  - type: web
     name: telegram-bot
     env: python
     buildCommand: pip install -r requirements.txt
@@ -18,4 +18,6 @@ services:
       - key: PYTHONASYNCIODEBUG
         value: "1"
       - key: EVENT_LOOP
-        value: "asyncio" 
+        value: "asyncio"
+    healthCheckPath: /health
+    autoDeploy: true 
