@@ -282,7 +282,6 @@ user_selections = {}
 async def start(event):
     """Send a welcome message when the command /start is issued."""
     user = await event.get_sender()
-    current_time = datetime.now().strftime("%H:%M")
     
     # Initialize user's selection dictionary
     user_selections[user.id] = {
@@ -297,7 +296,7 @@ async def start(event):
 👋 Hey {user.first_name}!
 
 🎀 Welcome to Premium Content Hub 🎀
-🕒 {current_time} | ⭐️ Premium Content Access
+⭐️ Premium Content Access
 
 💝 Get Access to Exclusive Content
 ✨ Instant Delivery
@@ -705,7 +704,6 @@ async def handle_photo(event):
 ⏳ Starting verification process...
 
 🔍 Status: Processing
-🕒 Time: {datetime.now().strftime("%H:%M:%S")}
 
 ✨ Please wait while we verify your payment
 🎯 We'll notify you in just a few seconds
