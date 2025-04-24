@@ -2,7 +2,7 @@ import asyncio
 import logging
 import os
 from aiohttp import web
-from bot import bot
+from bot import client
 
 # Configure logging
 logging.basicConfig(
@@ -16,9 +16,9 @@ async def health_check(request):
 
 async def start_bot():
     try:
-        await bot.start()
+        await client.start()
         logger.info("Bot started successfully")
-        await bot.run_until_disconnected()
+        await client.run_until_disconnected()
     except Exception as e:
         logger.error(f"Error in bot: {e}")
         raise
@@ -47,11 +47,11 @@ async def main():
             await asyncio.sleep(3600)  # Sleep for 1 hour
     except asyncio.CancelledError:
         logger.info("Shutting down...")
-        await bot.disconnect()
+        await client.disconnect()
         await runner.cleanup()
     except Exception as e:
         logger.error(f"Fatal error: {e}")
-        await bot.disconnect()
+        await client.disconnect()
         await runner.cleanup()
         raise
 
