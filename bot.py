@@ -74,7 +74,7 @@ MODELS = {
         "price_exclusive": 4399,
         "stats": "👁️ Premium Content | 💖 Instant Delivery",
         "specialties": "HD Videos | 4K Quality | Instant Access",
-        "image": "images/luckyrajor.jpg",
+        "image": os.path.join(os.path.dirname(os.path.abspath(__file__)), "images", "luckyrajor.jpg"),
         "original_price": 16500
     },
     "model2": {
@@ -133,7 +133,7 @@ MODELS = {
         "price_exclusive": 4399,
         "stats": "👁️ Premium Content | 💖 Instant Delivery",
         "specialties": "HD Videos | 4K Quality | Instant Access",
-        "image": "images/Miss Pinky.jpg",
+        "image": os.path.join(os.path.dirname(os.path.abspath(__file__)), "images", "Miss Pinky.jpg"),
         "original_price": 18500
     },
     "model3": {
@@ -192,7 +192,7 @@ MODELS = {
         "price_exclusive": 4399,
         "stats": "👁️ Premium Content | 💖 Instant Delivery",
         "specialties": "HD Videos | 4K Quality | Instant Access",
-        "image": "images/shanaya_katiyan.jpg",
+        "image": os.path.join(os.path.dirname(os.path.abspath(__file__)), "images", "shanaya_katiyan.jpg"),
         "original_price": 18000
     },
     "model4": {
@@ -253,7 +253,7 @@ MODELS = {
         "price_exclusive": 4399,
         "stats": "👁️ Premium Content | 💖 Instant Delivery",
         "specialties": "HD Videos | 4K Quality | Instant Access",
-        "image": "images/poonam.jpg",
+        "image": os.path.join(os.path.dirname(os.path.abspath(__file__)), "images", "poonam.jpg"),
         "original_price": 23000
     }
 }
@@ -655,7 +655,7 @@ Please confirm your order to proceed to payment.
         
         try:
             # Get absolute path of the QR code
-            qr_path = os.path.abspath("images/QR.jpg")
+            qr_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "images", "QR.jpg")
             
             if os.path.exists(qr_path):
                 # Send QR code with payment message
