@@ -19,19 +19,21 @@ async def main():
         await client.run_until_disconnected()
     except Exception as e:
         logger.error(f"Error occurred: {str(e)}")
-        # Wait for 5 seconds before restarting
-        await asyncio.sleep(5)
-        # Restart the script
-        os.execv(sys.executable, ['python'] + sys.argv)
+        sys.exit(1)
 
 if __name__ == '__main__':
     try:
+        # Use uvloop if available for better performance
+        try:
+            import uvloop
+            uvloop.install()
+        except ImportError:
+            pass
+            
+        # Run the bot
         asyncio.run(main())
     except KeyboardInterrupt:
         logger.info("Bot stopped by user")
     except Exception as e:
         logger.error(f"Fatal error: {str(e)}")
-        # Wait for 5 seconds before restarting
-        asyncio.run(asyncio.sleep(5))
-        # Restart the script
-        os.execv(sys.executable, ['python'] + sys.argv) 
+        sys.exit(1) 

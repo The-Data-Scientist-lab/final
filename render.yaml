@@ -10,4 +10,8 @@ services:
       - key: TELEGRAM_API_HASH
         sync: false
       - key: TELEGRAM_BOT_TOKEN
-        sync: false 
+        sync: false
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      - key: PYTHONPATH
+        value: "." 
