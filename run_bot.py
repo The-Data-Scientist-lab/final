@@ -18,12 +18,15 @@ async def start_bot():
     try:
         await client.start()
         logger.info("Bot started successfully")
-        await client.run_until_disconnected()
+        return client
     except Exception as e:
         logger.error(f"Error in bot: {e}")
         raise
 
 async def main():
+    # Start bot first
+    bot = await start_bot()
+    
     # Create web application
     app = web.Application()
     app.router.add_get('/health', health_check)
@@ -38,20 +41,19 @@ async def main():
     await site.start()
     logger.info(f"Web server started on port {port}")
     
-    # Start bot in the background
-    bot_task = asyncio.create_task(start_bot())
-    
     try:
-        # Keep the server running
-        while True:
-            await asyncio.sleep(3600)  # Sleep for 1 hour
+        # Run both bot and web server
+        await asyncio.gather(
+            bot.run_until_disconnected(),
+            asyncio.sleep(float('inf'))  # Keep the web server running
+        )
     except asyncio.CancelledError:
         logger.info("Shutting down...")
-        await client.disconnect()
+        await bot.disconnect()
         await runner.cleanup()
     except Exception as e:
         logger.error(f"Fatal error: {e}")
-        await client.disconnect()
+        await bot.disconnect()
         await runner.cleanup()
         raise
 
