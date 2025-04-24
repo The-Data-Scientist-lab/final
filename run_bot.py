@@ -24,6 +24,9 @@ async def start_bot():
         raise
 
 async def main():
+    # Get the event loop
+    loop = asyncio.get_event_loop()
+    
     # Start bot first
     bot = await start_bot()
     
@@ -42,11 +45,14 @@ async def main():
     logger.info(f"Web server started on port {port}")
     
     try:
-        # Run both bot and web server
-        await asyncio.gather(
-            bot.run_until_disconnected(),
-            asyncio.sleep(float('inf'))  # Keep the web server running
-        )
+        # Create a future that never completes to keep the event loop running
+        future = loop.create_future()
+        
+        # Start the bot in the background
+        bot_task = loop.create_task(bot.run_until_disconnected())
+        
+        # Wait for either the bot to disconnect or the future to complete
+        await future
     except asyncio.CancelledError:
         logger.info("Shutting down...")
         await bot.disconnect()
@@ -59,7 +65,11 @@ async def main():
 
 if __name__ == '__main__':
     try:
-        asyncio.run(main())
+        # Get the event loop
+        loop = asyncio.get_event_loop()
+        
+        # Run the main function
+        loop.run_until_complete(main())
     except KeyboardInterrupt:
         logger.info("Bot stopped by user")
     except Exception as e:
